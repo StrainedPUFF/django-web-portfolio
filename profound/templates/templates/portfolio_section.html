@@ -1,0 +1,61 @@
+{% extends 'portfolio_base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/portfolio_section.css' %}">
+
+{% block title %}{{ section_title }}{% endblock %}
+
+{% block content %}
+<section>
+  <h2>{{ section_title }}</h2>
+  <div class="portfolio-items">
+
+    {% for item in items %}
+      <div class="card">
+        {% if item.title %}<h3>{{ item.title }}</h3>{% endif %}
+        {% if item.name %}<h3>{{ item.name }}</h3>{% endif %}
+
+        {% if item.description %}
+          <p>{{ item.description|linebreaks }}</p>
+        {% elif item.content %}
+          <p>{{ item.content|linebreaks }}</p>
+        {% elif item.message %}
+          <p>{{ item.message|linebreaks }}</p>
+        {% elif item.curriculum_vitae %}
+          <h4>Curriculum Vitae</h4>
+          <p>{{ item.curriculum_vitae|linebreaks }}</p>
+        {% elif item.Bio %}
+          <h4>Bio</h4>
+          <p>{{ item.Bio|linebreaks }}</p>
+        {% endif %}
+
+        {% if item.image %}
+          {% comment %} <img src="{{ item.image.url }}" alt="{{ item.title|default:item.name }}" width="300"> {% endcomment %}
+          <img src="{{ item.image.url }}" alt="{{ item.title|default:'Untitled Project' }}" width="300">
+        {% elif item.display_photo %}
+          <img src="{{ item.display_photo.url }}" alt="{{ item.name }}" width="150">
+        {% endif %}
+
+        {% if item.link %}
+          <p><a href="{{ item.link }}" target="_blank">View Project</a></p>
+        {% endif %}
+
+        {% if item.email %}<p><strong>Email:</strong> {{ item.email }}</p>{% endif %}
+        {% if item.contact %}<p><strong>Contact:</strong> {{ item.contact }}</p>{% endif %}
+        {% if item.role %}<p><em>{{ item.role }}</em></p>{% endif %}
+        {% if item.quote %}
+          <blockquote>{{ item.quote }}</blockquote>
+        {% endif %}
+
+        {% if item.timestamp %}
+          <p class="timestamp">Posted on {{ item.timestamp|date:"M d, Y" }}</p>
+        {% elif item.created_at %}
+          <p class="timestamp">Created on {{ item.created_at|date:"M d, Y" }}</p>
+        {% endif %}
+      </div>
+    {% empty %}
+      <p>No items found in this section yet.</p>
+    {% endfor %}
+
+  </div>
+</section>
+{% endblock %}

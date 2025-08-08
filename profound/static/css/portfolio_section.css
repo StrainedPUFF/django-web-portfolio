@@ -1,0 +1,151 @@
+/* Root settings for light/dark mode switching */
+:root {
+  --bg-color: #f8f9fa;
+  --text-color: #333;
+  --card-bg: #fff;
+  --accent-color: #1a5276;
+  --link-color: #2874a6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #121212;
+    --text-color: #ddd;
+    --card-bg: #1e1e1e;
+    --accent-color: #6faed9;
+    --link-color: #93c1f9;
+  }
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.4s, color 0.4s;
+}
+
+h2 {
+  text-align: center;
+  margin: 40px 0 20px;
+  color: var(--accent-color);
+}
+
+.portfolio-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 300px;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.card h3 {
+  font-size: 1.3em;
+  margin-bottom: 10px;
+  color: var(--accent-color);
+}
+
+.card p, .card blockquote {
+  margin: 10px 0;
+  line-height: 1.4;
+}
+
+blockquote {
+  font-style: italic;
+  border-left: 4px solid var(--accent-color);
+  padding-left: 10px;
+  background-color: rgba(100, 100, 255, 0.05);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.timestamp {
+  font-size: 0.85em;
+  color: #777;
+  margin-top: 10px;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--accent-color);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .portfolio-items {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  .card h3 {
+    font-size: 1.2em;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 10px auto;
+  background: white;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.timestamp {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.portfolio-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+}

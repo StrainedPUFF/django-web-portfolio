@@ -1,0 +1,84 @@
+/* Basic layout and typography */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    text-align: center;
+    margin-top: 40px;
+    color: #2c3e50;
+}
+
+section {
+    margin: 40px auto;
+    max-width: 900px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+div {
+    margin: 10px 0;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Specific section styles */
+#projects div {
+    background-color: #e8f6f3;
+}
+
+#blogposts div {
+    background-color: #fef6e4;
+}
+
+#testimonials blockquote {
+    font-style: italic;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-left: 4px solid #2c3e50;
+}
+
+#contactmessages div {
+    background-color: #f9ecec;
+}
+
+#user_profile div {
+    background-color: #eaf2f8;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    section {
+        margin: 20px;
+        padding: 10px;
+    }
+
+    h1, h2 {
+        font-size: 1.5em;
+    }
+}
+
+div:hover {
+    background-color: #dceaf5;
+    transition: background-color 0.3s ease;
+}
+
+section {
+    transition: transform 0.4s ease;
+}
+section:hover {
+    transform: scale(1.02);
+}
+.footer{
+    text-align: center;
+}

@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Portfolio</title>
+
+    <!-- Bootstrap CSS -->
+    {% comment %} <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> {% endcomment %}
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/lux/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/portfolio_home.css' %}">
+</head>
+<body style="font-family: 'Roboto', sans-serif;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">My Portfolio</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#user_profile">Profiles</a></li>
+            <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+            <li class="nav-item"><a class="nav-link" href="#blogposts">Blog</a></li>
+            <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contactmessages">Contact</a></li>
+        </ul>
+        </div>
+    </div>
+    </nav>
+
+
+    <div class="container py-5">
+        <h1 class="text-center mb-5">Welcome to My Portfolio</h1>
+
+        <!-- 👤 User Profiles -->
+        <section id="user_profile" class="mb-5">
+            <h2 class="mb-4">User Profiles</h2>
+            <div class="row">
+                {% for user in user_profile %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="{{ user.display_photo.url }}" class="card-img-top" alt="{{ user.name }}'s photo">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ user.name }}</h5>
+                                <p class="card-text"><strong>Bio:</strong> {{ user.Bio }}</p>
+                                <p><strong>CV:</strong> {{ user.curriculum_vitae }}</p>
+                                <p><strong>Contact:</strong> {{ user.contact }}</p>
+                                <p><strong>Email:</strong> {{ user.email }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No user profiles available.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- 📁 Projects -->
+        <section id="projects" class="mb-5">
+            <h2 class="mb-4">Projects</h2>
+            <div class="row">
+                {% for project in projects %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ project.title }}</h5>
+                                <p class="card-text">{{ project.description }}</p>
+                                {% if project.link %}
+                                    <a href="{{ project.link }}" class="btn btn-primary" target="_blank">View Project</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No projects available yet.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- 📝 Blog Posts -->
+        <section id="blogposts" class="mb-5">
+            <h2 class="mb-4">Blog Posts</h2>
+            {% for post in blogpost %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.content }}</p>
+                        <small class="text-muted">Posted on: {{ post.created_at|date:"F j, Y" }}</small>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No blog posts yet.</p>
+            {% endfor %}
+        </section>
+
+        <!-- 💬 Testimonials -->
+        <section id="testimonials" class="mb-5">
+            <h2 class="mb-4">Testimonials</h2>
+            {% for testimonial in testimonials %}
+                <div class="alert alert-secondary">
+                    <blockquote class="blockquote mb-0">“{{ testimonial.quote }}”</blockquote>
+                    <footer class="blockquote-footer mt-2">{{ testimonial.name }}, <cite>{{ testimonial.role }}</cite></footer>
+                </div>
+            {% empty %}
+                <p>No testimonials at the moment.</p>
+            {% endfor %}
+        </section>
+
+        <!-- 📧 Contact Messages -->
+        <section id="contactmessages" class="mb-5">
+            <h2 class="mb-4">Contact Messages</h2>
+            {% for message in contactmessages %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ message.name }}</h5>
+                        <p><strong>Email:</strong> {{ message.email }}</p>
+                        <p>{{ message.message }}</p>
+                        <small class="text-muted">Received on: {{ message.created_at|date:"F j, Y" }}</small>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No contact messages received.</p>
+            {% endfor %}
+        </section>
+
+        <footer class="text-center mt-5">
+            <p>&copy; 2025 My Portfolio. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
